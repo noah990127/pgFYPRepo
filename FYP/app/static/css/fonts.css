@@ -1,0 +1,21 @@
+/************************** 
+* library files
+***************************/
+
+@import url("bootstrap.min.css");
+@import url("daterangepicker.css");
+@import url("dataTables.bootstrap.min.css");
+
+/************************** 
+* Fonts Icon
+***************************/
+
+@import url("all.min.css");
+@import url("simple-line-icons.css");
+
+/************************** 
+* Import fonts
+***************************/
+
+@import url("css2.css");
+@import url("css21.css");

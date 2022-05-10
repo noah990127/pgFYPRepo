@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Library seat booking system</title>
+    <!-- Base Styling  -->
+    <link rel="stylesheet" href="/static/css/fonts.css">
+    <link rel="stylesheet" href="/static/css/style2.css">
+</head>
+
+<body>
+    <div id="main-wrapper" class="show">
+
+        <!-- start logo components -->
+        <div class="nav-header">
+          <div class="brand-logo">
+            <a href=""> <img class="brand-logo" src="/static/images/hkustlogo.jpg" alt=""></a>
+          </div>
+        </div>
+        <!-- End logo components -->
+
+        <!-- start section sidebar -->
+        <aside class="left-panel nicescroll-box">
+            <nav class="navigation">
+                <ul class="list-unstyled main-menu">
+                    <li class="has-submenu">
+                        <a href="/student/homepagefloor1">
+                            <span class="nav-label">Floor 1</span>
+                        </a>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="/student/homepagefloor2">
+                            <span class="nav-label">Floor 2</span>
+                        </a>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="/student/homepagefloor3">
+                            <span class="nav-label">Floor 3</span>
+                        </a>
+                    </li>
+
+                    <li class="has-submenu active">
+                        <a href="/student/bookingRecord">
+                            <span class="nav-label">Booking record</span>
+                        </a>
+                    </li>
+
+                    <li class="has-submenu">
+                        <a href="/student/scanQRcode">
+                            <span class="nav-label">Scan seat QR-code</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+        </aside>
+        <!-- End section sidebar -->
+
+        <!-- start section header -->
+        <div class="header">
+            <header class="top-head container-fluid">
+                <div class="nav-control">
+                </div>
+
+                <div class="header-right">
+                    <div class="my-account-wrapper">
+                        <div class="account-wrapper">
+                            <div class="account-control">
+                                <a class="login header-profile" href="#" title="Sign in">
+                                    <div class="header-info">
+                                        <span>Hi, {{ name }}</span>
+                                        <small>Student</small>
+                                    </div>
+                                </a>
+                                <div class="account-dropdown-form dropdown-container">
+                                    <div class="form-content">
+                                        <a href="/student/visitorlogin">
+                                            <span class="ml-2">Logout </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <!-- End section header -->
+
+
+
+        <!-- start section content -->
+        <div class="content-body">
+            <div class="warper container-fluid">
+                <div class="row page-titles mx-0">
+                    <div class="col-lg-12 p-md-0">
+                        <h4 class="text-primary">Hello, <span class="names">{{ name }}</span></h4>
+                        <p class="mb-0">Library seat booking system</p>
+                    </div>
+                </div>
+                <div class="new-patients main_container">
+
+                    <form method="POST">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card shadow">
+                                    <div class="card-header">
+                                        <h4 class="card-title">History booking records</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="dataTable no-footer" role="grid" aria-describedby="example1_info">
+
+                                             <thead>
+                                                    <tr>
+                                                        <th>Seat No.</th>
+                                                        <th>Floor</th>
+                                                        <th>Time</th>
+                                                        <th>Status</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                            </thead>
+                                            {% for eachOrder in orderTotalList %}
+                                            <tr>
+                                                <td>{{ eachOrder[0] }}</td>
+                                                <td>{{ eachOrder[1] }}</td>
+                                                <td>{{ eachOrder[2] }}</td>
+                                                {% if eachOrder[3] == 0 %}
+                                                <td>Unfinished</td>
+                                                <td>                
+                                                    <button type="submit" class="badge badge-danger">Cancel</button>
+                                                </td>
+                                                {% endif %}
+                                                
+                                                {% if eachOrder[3] == 1 %}
+                                                <td>Seating</td>
+                                                <td><button type = "button" class="badge badge-success" onclick="window.location.href='/student/leaveSeat/{{ eachOrder[0] }}'">Leave</button></td>
+                                                {% endif %}
+                                                
+                                                {% if eachOrder[3] == 2 %}
+                                                <td>Finished</td>
+                                                {% endif %}
+
+                                            </tr>
+                                            {% endfor %}
+                                        </table>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <!-- End section content -->
+
+
+
+
+    </div>
+
+
+    <!-- JQuery v3.5.1 -->
+    <script src="/static/js/jquery.min.js"></script>
+
+    <!-- popper js -->
+    <script src="/static/js/popper.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="/static/js/bootstrap.js"></script>
+
+    <!-- Moment -->
+    <script src="/static/js/moment.min.js"></script>
+
+    <!-- Date Range Picker -->
+    <script src="/static/js/daterangepicker.min.js"></script>
+
+    <!-- Datatable -->
+    <script src="/static/js/jquery.dataTables.min.js"></script>
+    <script src="/static/js/init-tdatatable.js"></script>
+
+    <!-- Chart js -->
+    <script src="/static/js/Chart.min.js"></script>
+    <script src="/static/js/charts-custom.js"></script>
+
+    <!-- Main Custom JQuery -->
+    <script src="/static/js/toggleFullScreen.js"></script>
+    <script src="/static/js/main.js"></script>
+
+</body>
+
+</html>

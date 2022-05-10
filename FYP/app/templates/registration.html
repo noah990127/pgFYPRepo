@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.82.0">
+    <title>Register</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
+
+    
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/docs/5.0/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="/docs/5.0/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="/docs/5.0/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+    <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon.ico">
+    <meta name="theme-color" content="#7952b3">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="form-validation.css" rel="stylesheet">
+  </head>
+  <body class="bg-light">
+    
+<div class="container">
+  <main>
+    <div class="py-5 text-center">
+      <h2>Registration</h2><br>
+      <p class="lead">Please fill the form</p>
+    </div>
+{% if error_msg %}
+        <!-- Error message -->
+        <p style="color:#901a1a; font-weight:bold; font-size: 18px; text-align: center;" id="h4.-bootstrap-heading">
+            <span style="background-color: #f5e0dc65;">&emsp;{{ error_msg }}&emsp;</span>
+        </p>
+    {% endif %}
+{% if msg %}
+        <!-- Error message -->
+        <a href="/student/visitorlogin">
+        <p style="color:#228B22; font-weight:bold; font-size: 18px; text-align: center;" id="h4.-bootstrap-heading">
+            <span >&emsp;{{ msg }}&emsp;</span>
+        </a>
+        </p>
+    {% endif %}
+    <div class="">
+      <div class="">
+        <form method="POST">
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label for="_id" class="form-label">Student ID</label>
+              <input type="text" class="form-control" id="_id" name="_id" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                PLease input your student ID.
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="Name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Please input your name.
+              </div>
+            </div>
+
+            
+
+            <div class="col-12">
+              <label for="password" class="form-label">Password (6-12 digits in length, cannot be composed of pure numbers or pure letters) </label>
+              <input type="password" class="form-control" id="pw" name="pw" pattern="(^(?![^A-Za-z]+$)(?![^0-9]+$)[\x21-x7e]{6,12}$)" required>
+              <div class="invalid-feedback">
+                Please set your password.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="password" class="form-label">Confirm your password </label>
+              <input type="password" class="form-control" id="pw1" name="pw1" pattern="(^(?![^A-Za-z]+$)(?![^0-9]+$)[\x21-x7e]{6,12}$)"required>
+              <div class="invalid-feedback">
+                Please confirm your password.
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="pnumber" class="form-label">Phone</label>
+              <input type="text" class="form-control" id="pnumber" name="pnumber" pattern="(\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$" required>
+              <div class="invalid-feedback">
+                Please input your phone number.
+              </div>
+            </div>
+
+            
+          </div>
+
+
+          
+
+          <hr class="my-4">
+
+          <button class="w-100 btn btn-primary btn-lg" type="submit">Sign up</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    
+  </footer>
+</div>
+
+
+    <script src="/static/js/bootstrap.bundle.min.js" ></script>
+
+      <script src="/static/js/form-validation.js"></script>
+  </body>
+</html>

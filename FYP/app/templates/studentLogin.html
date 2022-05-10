@@ -1,0 +1,67 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Student Login System</title>
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Teamwork system, Teacher, Student, Grouping, Grading" />
+
+    <!-- //for-mobile-apps -->
+    <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- js -->
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <!-- //js -->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans+Caption' rel='stylesheet' type='text/css'>
+
+    <link href="favicon.ico" rel="shortcut icon" />
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.4.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body style="background-color: transparent; font-family: 'Open Sans';">
+
+    <form method="POST">
+        <div class="modal-dialog" style="margin-top: 10%;">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title text-center" id="myModalLabel">Student Login System</h4><br>
+                    <h5 class="modal-title text-center" id="myModalLabel">New to Library System? <a href="/student/register">Create an account.</a></h5>
+                </div>
+                
+
+                <div class="modal-body" id="model-body">
+                    <div class="form-group">
+                        <h4>Student ID</h4>
+                        <input type="text" class="form-control" id="stuID" name="stuID" required />
+                    </div>
+                    <div class="form-group">
+                        <h4>Password</h4>
+                        <input type="password" class="form-control" id="password" name="password" required />
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <button type="submit" id="login" name="login" class="btn btn-primary form-control">Login</button>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal -->
+    </form>
+    {% if error_msg %}
+        <!-- Error message -->
+        <p style="color:#901a1a; font-weight:bold; font-size: 18px; text-align: center;" id="h4.-bootstrap-heading">
+            <span style="background-color: #f5e0dc65;">&emsp;{{ error_msg }}&emsp;</span>
+        </p>
+    {% endif %}
+</body>
+
+</html>
