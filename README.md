@@ -9,7 +9,7 @@
 #### 3. Cancel order
 #### 4. Scan QR-code of the seat
 
-### For admin: 
+#### For admin: 
 #### 1. Login/Logout
 #### 2. search seat
 #### 3. Search student
@@ -18,4 +18,4 @@
 
 ## Launch guideline:
 #### 1. pip3 install flask, sql-sqlalchemy, opencv, qrcode, pzbar
-#### 2. run file teamwork.py
+#### 2. Run file teamwork.py
