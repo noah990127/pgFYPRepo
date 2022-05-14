@@ -47,10 +47,12 @@ def visitorlogin():
 		global stuID
 		stuID = request.form.get('stuID')
 		_password = request.form.get('password')
-		loginResult = Student.query.filter(and_(Student.stuID == stuID,Student._password == _password)).first()
-		
+		loginResult = Student.query.filter(and_(Student.stuID == stuID,Student._password == _password)).first()	
 		if loginResult:
-			return redirect(url_for('Student.homepage'))
+			if loginResult.confidency == 0:
+				return render_template('studentLogin.html', error_msg = 'You are in the blacklist now. If you have any problem, please contact with the admin.')
+			else:
+				return redirect(url_for('Student.homepage'))
 		else:
 			return render_template('studentLogin.html', error_msg = 'The student ID or the password must be wrong, please try again.')
 
@@ -114,24 +116,26 @@ def seatOrder1(sID):
 		floorNum = seat.floor
 		return render_template('orderPage.html', sID = sID, floorNum = floorNum, visable = 1, name = name)
 	else:
-		# 新增用户
 		# student info
 		student = Student.query.filter(Student.stuID == stuID).first()
 		name = student.name
+		ordertmp = Order.query.filter(and_(Order.stuID == stuID, Order.status != 2)).first()
+		if ordertmp:
+			return render_template('orderPage.html', message = "You have booked a seat already, please check your order record.", visable = 0, name = name)
+		else:
+			with db.auto_commit():
+				seat = Seat.query.filter(Seat.sID == sID).first()
+				seat.status = 1 # booked
 
-		with db.auto_commit():
-			seat = Seat.query.filter(Seat.sID == sID).first()
-			seat.status = 1 # booked
-
-			order = Order()
-			order.stuID = stuID
-			order.sID = sID
-			order.time = time.localtime()
-			order.status = 0 # uncomplished
-			db.session.add(order)
+				order = Order()
+				order.stuID = stuID
+				order.sID = sID
+				order.time = time.localtime()
+				order.status = 0 # uncomplished
+				db.session.add(order)
 
 
-		return render_template('orderPage.html', message = "The seat has been already booked successfully.", visable = 0, name = name)
+			return render_template('orderPage.html', message = "The seat has been already booked successfully.", visable = 0, name = name)
 
 @studentBP.route('/bookingRecord',methods=['GET','POST'])
 def bookingRecord():
@@ -243,22 +247,3 @@ def leaveSeat(sID):
 			orderList.append(each.status)
 			orderTotalList.append(orderList)
 		return render_template('bookRecord.html', orderTotalList = orderTotalList, name = name)
-# @studentBP.route('/visitorinfo', methods=['GET','POST'])
-# def visitorinfo():
-# 	if request.method == 'GET':
-# 		student = Student.query.filter(Student.stuID == stuID).first()
-# 		name = student.name
-# 		id = student.stuID
-# 		record = Order.query.filter(Order.stuID == stuID).first()
-# 		if record:
-# 			at=record.arrivalTime
-# 			if at:			
-# 				qr.make("姓名："+name+'\n'+'身份证号：'+ id + '\n' + '入园时间：'+str(at)).get_image().show()
-# 				return render_template('information.html',name=name, at=at)
-# 			else:
-# 				qr.make("姓名："+name+'\n'+'身份证号：'+ id).get_image().show()
-# 				return render_template('information.html',name=name)
-# 		else:
-# 			qr.make("姓名："+name+'\n'+'身份证号：'+ id).get_image().show()
-# 			return render_template('information.html',name=name)
-
