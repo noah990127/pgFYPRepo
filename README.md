@@ -18,4 +18,4 @@
 
 ## Launch guideline:
 #### 1. pip3 install flask, sql-sqlalchemy, opencv, qrcode, pzbar
-#### 2. Run file teamwork.py
+#### 2. Run file application.py
